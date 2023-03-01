@@ -3,12 +3,11 @@ const imageModelCtrl = require('../models/imagemodel')
 const express = require('express')
 const { S3Client } = require('@aws-sdk/client-s3');
 
-const dotenv = require('dotenv')
+require('dotenv').config()
 const path = require('path')
 const multer = require('multer')
 const multerS3 = require('multer-s3')
 
-dotenv.config()
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 
@@ -19,10 +18,10 @@ app.use(bodyParser.json())
 
 
 let s3 = new S3Client({
-    region: "ap-south-1",
+    region: process.env.AWS_REGION,
     credentials: {
-        accessKeyId: "AKIAWOGOU7IQ54FLN37N",
-        secretAccessKey: "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",
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
     },
     sslEnabled: false,
     s3ForcePathStyle: true,
@@ -32,7 +31,7 @@ let s3 = new S3Client({
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: "hotelsbookings",
+        bucket: process.env.AWS_BUCKET_NAME,
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
         },
@@ -97,7 +96,6 @@ async function imageLogin(req, res) {
             console.log(err)
         }
         else {
-            console.log(docs[0]._id)
             if (docs.length == 1) {
                 let data = {
                     time: Date(),

@@ -31,7 +31,6 @@ window.onload = function () {
     // jsonPayload = JSON.parse(jsonPayload);
     // localStorage.setItem("currentLoggedUser", jsonPayload.email);   
     mail = localStorage.getItem("currentLoggedUser")
-    alert(mail)
     if (mail == "reddylikitha201@gmail.com") {
         $("#loginbut").css("display", "none");
         $("#userdrop1").css("display", "block");

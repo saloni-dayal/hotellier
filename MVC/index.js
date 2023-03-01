@@ -10,8 +10,7 @@ const cors=require("cors")
 routes.use(cors())
 app.use(cors())
 const jwt = require('jsonwebtoken'); 
-const dotenv=require('dotenv')
-dotenv.config()
+require('dotenv').config({path:'../.env'})
 // app.use(express.static('routes'));
 const userRoutes = require('./routes/users')
 
