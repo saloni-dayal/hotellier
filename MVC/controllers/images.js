@@ -21,8 +21,8 @@ app.use(bodyParser.json())
 let s3 = new S3Client({
     region: "ap-south-1",
     credentials: {
-        accessKeyId: "AKIAWOGOU7IQ54FLN37N",
-        secretAccessKey: "wEDtARssXkGvNnwQzYp5N9/sKUVFxyS92tSJ12WB",
+        accessKeyId: "your access id",
+        secretAccessKey: "secret access key",
     },
     sslEnabled: false,
     s3ForcePathStyle: true,
